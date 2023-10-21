@@ -13,7 +13,8 @@ public class CameraController : MonoBehaviour
     {
         Vector3 newPosition = new Vector3(target.position.x, target.position.y, -10f);
         transform.position = Vector3.Slerp(transform.position, newPosition, smoothSpeed);
-
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -21.3f, 58.3f),Mathf.Clamp(transform.position.y, -61.9f, 13.8f),transform.position.z);
+         
 
     }
 }
