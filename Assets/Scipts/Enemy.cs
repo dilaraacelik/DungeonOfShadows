@@ -7,16 +7,17 @@ public class Enemy : MonoBehaviour
 {
     private Transform control;
 
-    [SerializeField] private Rigidbody2D rbEnemy;
+    [SerializeField] 
+    private Rigidbody2D rbEnemy;
     [SerializeField]
     private GameObject stop1;
     [SerializeField] 
     private GameObject stop2;
+    public bool check = false;
 
     [SerializeField] private float speed;
     private void Start()
     {
-        rbEnemy = gameObject.GetComponent<Rigidbody2D>();
         control = stop2.transform;
     }
 
@@ -38,6 +39,19 @@ public class Enemy : MonoBehaviour
         if (Vector2.Distance(transform.position, control.position) < 0.5f && control == stop1.transform)
             control = stop2.transform;
     }
-
     
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Stop") ) 
+        {
+            var tempScale = transform.localScale;
+            tempScale.x *= -1;
+            transform.localScale = tempScale;
+        }
+    }
+
+    // private void OnTriggerExit2D(Collider2D other)
+    // {
+    //     check = false;
+    // }
 }
