@@ -14,11 +14,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] 
     private GameObject stop2;
     public bool check = false;
+    public Collider2D boxCollider;
 
     [SerializeField] private float speed;
     private void Start()
     {
         control = stop2.transform;
+        //boxCollider.enabled = false;
+
     }
 
     // Update is called once per frame
@@ -42,6 +45,7 @@ public class Enemy : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         if (other.CompareTag("Stop") ) 
         {
             var tempScale = transform.localScale;
@@ -49,9 +53,5 @@ public class Enemy : MonoBehaviour
             transform.localScale = tempScale;
         }
     }
-
-    // private void OnTriggerExit2D(Collider2D other)
-    // {
-    //     check = false;
-    // }
+    
 }
